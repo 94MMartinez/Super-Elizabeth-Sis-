@@ -39,6 +39,8 @@ public class Princesa {
 	public void moverDerecha() {
 		this.x= this.x +velocidad;
 		
+	
+		
 	}
 	public void moverIzquierda() {
 		this.x= this.x -velocidad;

@@ -41,6 +41,7 @@ public class Soldados {
 			this.x= this.x - velocidad;
 			
 		}
+
 	    
 		public int getAltosoldado() {
 			return altosoldado;
