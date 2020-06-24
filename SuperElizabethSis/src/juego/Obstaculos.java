@@ -19,8 +19,6 @@ public class Obstaculos {
 			this.alto=alto;
 			this.ancho=ancho;
 			this.velocidad=1;
-
-		
 		
 			
 		}

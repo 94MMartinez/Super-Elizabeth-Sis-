@@ -6,29 +6,52 @@ import entorno.Entorno;
 
 public class Soldados {
 	  //variables de instancia
-		private int x;
+		
+	    private int x;
 		private int y;
-		private int alto;
-		private int ancho;
+		private int altosoldado;
+		private int anchosoldado;
 		private int velocidad;
+		private int prueba;
+		boolean estaVivo = true;
 		//constructor
-		Soldados(int x, int y, int alto, int ancho){
+		
+		Soldados(int x, int y, int altosoldado, int anchosoldado){
 			this.x=x;
 			this.y=y;
-			this.alto=alto;
-			this.ancho=ancho;
-		    this.velocidad=2;
-		
-			
+			this.altosoldado=altosoldado;
+			this.anchosoldado=anchosoldado;
+		    this.velocidad=1;
+            this.prueba = 100;
 		}
+		
+		public boolean Vivo() {
+			return estaVivo;
+	
+		}
+		
+		
+		public void toco() {
+			this.x= this.x + this.prueba;
+	
+		}
+		
 		
 		public void moverIzquierda() {
 			this.x= this.x - velocidad;
 			
 		}
 	    
+		public int getAltosoldado() {
+			return altosoldado;
+		}
+
+		public int getAnchosoldado() {
+			return anchosoldado;
+		}
+
 		public void dibujar(Entorno e) {
-			e.dibujarRectangulo(this.x, this.y, this.ancho, this.alto,0, Color.GREEN);
+			e.dibujarRectangulo(this.x, this.y, this.anchosoldado, this.altosoldado,0, Color.GREEN);
 		}
 
 		public int getX() {
