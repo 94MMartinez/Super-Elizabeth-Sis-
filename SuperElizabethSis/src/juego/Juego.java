@@ -31,6 +31,9 @@ public class Juego extends InterfaceJuego
 		this.sold= new Soldados(750,500,60,30);
 		this.bola= new Boladefuego(prin.getX(),prin.getY(),20);
 		listaBol = new LinkedList <Boladefuego>();
+		
+		
+	
 	
 
 		// Inicia el juego!
@@ -47,7 +50,7 @@ public class Juego extends InterfaceJuego
 	{
 		// Procesamiento de un instante de tiempo
 		// ...
-		
+
 		prin.dibujar(this.entorno);
 		if(this.entorno.estaPresionada(this.entorno.TECLA_DERECHA) && prin.getX()<this.entorno.ancho()/2) {
 			prin.moverDerecha();
@@ -60,7 +63,7 @@ public class Juego extends InterfaceJuego
 		}
 		
 		for(Boladefuego bola:listaBol) {
-			bola.dibujar(this.entorno);
+			bola.dibujar(entorno);
 			bola.moverDerecha();
 		}
 		for(Boladefuego bola:listaBol) {

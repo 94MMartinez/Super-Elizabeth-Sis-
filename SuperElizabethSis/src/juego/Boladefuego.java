@@ -10,6 +10,7 @@ public class Boladefuego {
 		private double y;
 		private double diametro;
 		private double velocidad;
+		private double angulo;
 
 		//constructor
 		Boladefuego(double x, double y, double diametro){
@@ -17,6 +18,7 @@ public class Boladefuego {
 			this.y=y;
 			this.diametro=diametro;
 			this.velocidad=2;
+			this.angulo=0;
 		
 		
 			
@@ -32,8 +34,10 @@ public class Boladefuego {
 		}
 
 		public void dibujar(Entorno e) {
-			e.dibujarCirculo(this.x, this.y, this.diametro, Color.red);
+		e.dibujarCirculo(this.x, this.y,this.diametro, Color.RED);;
+	
 		}
+
 
 		public double getX() {
 			return x;
