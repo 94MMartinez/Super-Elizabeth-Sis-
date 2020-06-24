@@ -26,7 +26,7 @@ public class Soldados {
 			this.x= this.x - velocidad;
 			
 		}
-	    
+
 		public void dibujar(Entorno e) {
 			e.dibujarRectangulo(this.x, this.y, this.ancho, this.alto,0, Color.GREEN);
 		}
@@ -37,6 +37,14 @@ public class Soldados {
 
 		public int getY() {
 			return y;
+		}
+
+		public int getAncho() {
+			return ancho;
+		}
+
+		public int getAlto() {
+			return alto;
 		}
 
 }

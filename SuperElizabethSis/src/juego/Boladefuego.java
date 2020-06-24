@@ -9,23 +9,28 @@ public class Boladefuego {
 		private double x;
 		private double y;
 		private double diametro;
+		private double velocidad;
 
 		//constructor
 		Boladefuego(double x, double y, double diametro){
 			this.x=x;
 			this.y=y;
 			this.diametro=diametro;
-
+			this.velocidad=2;
 		
 		
 			
 		}
 		
 		public void moverDerecha() {
-			this.x= this.x +1;
+			this.x= this.x + velocidad;
 			
 		}
-	    
+	
+		public double getDiametro() {
+			return diametro;
+		}
+
 		public void dibujar(Entorno e) {
 			e.dibujarCirculo(this.x, this.y, this.diametro, Color.red);
 		}
@@ -37,5 +42,5 @@ public class Boladefuego {
 		public double getY() {
 			return y;
 		}
-
+		
 }
