@@ -14,6 +14,7 @@ public class Juego extends InterfaceJuego
 	private Obstaculos obs;
 	private Soldados sold;
 	private Boladefuego bola;
+	private Piso piso;
 	private int vidas;
 	private int puntos;
     private boolean juegoFin = false;
@@ -28,8 +29,9 @@ public class Juego extends InterfaceJuego
 	{
 	this.prin = new Princesa(150,500,60,30);
 	this.obs= new Obstaculos(825,500,20,30);
-	this.sold= new Soldados(750,500,60,30);
+	this.sold= new Soldados(750,500,50,30);
 	this.bola= new Boladefuego(175,500,20);
+	this.piso=new Piso(400,579,100,800);
 	}
 	Juego()
 	{	vidas = 3;
@@ -41,7 +43,7 @@ public class Juego extends InterfaceJuego
 
 		this.prin = new Princesa(150,500,60,30);
 		this.obs= new Obstaculos(825,500,20,30);
-		this.sold= new Soldados(750,500,60,30);
+		this.sold= new Soldados(750,502,53,28);
 		this.bola= new Boladefuego(prin.getX(),prin.getY(),20);
 		listaBol = new LinkedList <Boladefuego>();
 
@@ -61,6 +63,7 @@ public class Juego extends InterfaceJuego
 	{
 		// Procesamiento de un instante de tiempo
 		// ...
+		piso.dibujar(this.entorno);
 		
 		entorno.escribirTexto("VIDAS: "+ vidas, 700, 50);		
 		entorno.escribirTexto("Puntaje: "+ puntos, 600, 50);
@@ -69,6 +72,18 @@ public class Juego extends InterfaceJuego
 		obs.moverIzquierda();
 		sold.dibujar(this.entorno);
 		sold.moverIzquierda();
+		
+		if (this.prin.getY()<498 && this.prin.getY()>350) {
+			this.prin.caer();
+		}
+		boolean saltar=true;
+		
+		if (saltar && this.entorno.sePresiono(this.entorno.TECLA_ARRIBA) && this.prin.getY()>=440) {
+		      this.prin.subir();
+		      saltar=false;
+		      
+		   }
+
 		
 	  if(this.entorno.estaPresionada(this.entorno.TECLA_DERECHA) && prin.getX()<this.entorno.ancho()/2) {
 			prin.moverDerecha();
@@ -95,9 +110,7 @@ public class Juego extends InterfaceJuego
 			
 
 		}	
-	      if(this.entorno.estaPresionada(this.entorno.TECLA_ARRIBA)) {
-	     	prin.saltar();
-	    }
+	     
 
 		
 		
@@ -106,10 +119,6 @@ public class Juego extends InterfaceJuego
 		sold.dibujar(this.entorno);
 		sold.moverIzquierda() ;
 
-		
-       if(this.entorno.estaPresionada(this.entorno.TECLA_ABAJO)) 
-   	    prin.gravedad();
-       {
 	      
 	      if(colision()) {
 				this.sold.toco();
@@ -121,7 +130,6 @@ public class Juego extends InterfaceJuego
 	      }			 		   
 
        }
-}
 
     public boolean colision() {
 	boolean seTocanY = this.sold.getY()-this.sold.getAltosoldado()/2  < this.prin.getY() + this.prin.getAlto()/2 ;

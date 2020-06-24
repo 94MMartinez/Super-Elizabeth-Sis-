@@ -13,6 +13,7 @@ public class Princesa {
 	private int velocidad;
 	private int salto;
 	private int gravedad;
+	private int saltoo;
 	static boolean piso = true;
 
 	//constructor
@@ -23,14 +24,19 @@ public class Princesa {
 		this.ancho=ancho;
 		this.velocidad=3;
      	this.salto=-1;
+     	this.saltoo=-90;
      	this.gravedad=-1;
      	
 	
 	}
-	public void gravedad() {
-	this.y= this.y - this.gravedad;
+	public void caer() {
+		this.y=this.y - this.gravedad;
+	}
+	public void subir() {
+		this.y=this.y + this.saltoo;
+	}
 	
-    }   	
+     	
 		public void saltar() {
 		this.y= this.y + this.salto*(1);
 		
