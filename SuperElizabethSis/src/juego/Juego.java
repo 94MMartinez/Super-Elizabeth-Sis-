@@ -1,6 +1,7 @@
 package juego;
 
 
+import java.util.ArrayList;
 import java.util.LinkedList;
 import java.awt.Image;
 import entorno.Entorno;
@@ -18,12 +19,12 @@ public class Juego extends InterfaceJuego
 	private Piso piso;
 	private int vidas;
 	private int puntos;
-    private boolean juegoFin = false;
 	private LinkedList <Boladefuego> listaBol;
 	private Image fondo;
 	private Image princesa;
 	private Image fuego;
-
+	private Image gameOver;
+    private boolean juegofin;
 
 	
 	
@@ -50,7 +51,8 @@ public class Juego extends InterfaceJuego
 		this.sold= new Soldados(800,500,53,20);
 		this.bola= new Boladefuego(bola.getX(),bola.getY(),bola.getAncho(),bola.getAlto());
 		listaBol = new LinkedList <Boladefuego>();
-		fondo = Herramientas.cargarImagen("Fondo.png");
+		
+		gameOver = Herramientas.cargarImagen("Gameover.png");
 		princesa = Herramientas.cargarImagen("prince.png");
 		fuego = Herramientas.cargarImagen("Fuego.png");
 	
@@ -69,7 +71,8 @@ public class Juego extends InterfaceJuego
 	{
 		// Procesamiento de un instante de tiempoz
 		// ...
-
+       if(!juegofin());{
+		fondo = Herramientas.cargarImagen("Fondo.png");
 		piso.dibujar(this.entorno);
 		entorno.dibujarImagen(fondo, 200, 200, 0);
 		entorno.dibujarImagen(princesa, prin.getX(), prin.getY(), 0, 2);		
@@ -79,17 +82,12 @@ public class Juego extends InterfaceJuego
 		obs.dibujar(this.entorno);
 		obs.moverIzquierda();
 		sold.dibujar(this.entorno);
-
 		
-		
-	      
-	      if(colision()) {
+	      	      if(colision()) {
 				this.sold.toco();
 				vidas = vidas -1;
-				System.out.println(vidas);
-				if(vidas==0) {
-					entorno.escribirTexto("F", 325, 200);
-				}
+				
+	            
 	      }	else if (vidas> 0)
 	      {obs.dibujar(this.entorno);
 			obs.moverIzquierda();
@@ -131,11 +129,24 @@ public class Juego extends InterfaceJuego
 				}
 		    }
 
+				}
  
 	      }		 		   
-
+		if(juegofin()) {
+			entorno.dibujarImagen(fondo, 200, 200, 0);
+			entorno.dibujarImagen(gameOver, 375, 300, 0);
     }
+	}
+	
+	public boolean juegofin() {
+		if(this.vidas == 0) {
+			return true;
+		}else {
+			return false;
+		}
+	}
 
+	   
 
     public boolean colision() {
 	boolean seTocanY = this.sold.getY()-this.sold.getAltosoldado()/2  < this.prin.getY() + this.prin.getAlto()/2 ;
