@@ -11,6 +11,7 @@ public class Obstaculos {
 		private int alto;
 		private int ancho;
 		private int velocidad;
+		
 	
 		//constructor
 		Obstaculos(int x, int y, int alto, int ancho){
@@ -19,8 +20,6 @@ public class Obstaculos {
 			this.alto=alto;
 			this.ancho=ancho;
 			this.velocidad=1;
-
-		
 		
 			
 		}

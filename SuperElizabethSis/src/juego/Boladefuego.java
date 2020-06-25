@@ -8,16 +8,18 @@ public class Boladefuego {
 	  //variables de instancia
 		private double x;
 		private double y;
-		private double diametro;
 		private double velocidad;
 		private double angulo;
+		private double alto;
+		private double ancho;
 
 		//constructor
-		Boladefuego(double x, double y, double diametro){
+		Boladefuego(double x, double y, double ancho, double alto){
 			this.x=x;
 			this.y=y;
-			this.diametro=diametro;
-			this.velocidad=2;
+			this.alto=alto;
+			this.ancho=ancho;
+			this.velocidad=5;
 			this.angulo=0;
 		
 		
@@ -28,16 +30,22 @@ public class Boladefuego {
 			this.x= this.x + velocidad;
 			
 		}
-	
-		public double getDiametro() {
-			return diametro;
-		}
 
 		public void dibujar(Entorno e) {
-		e.dibujarCirculo(this.x, this.y,this.diametro, Color.RED);;
+		e.dibujarRectangulo(this.x, this.y,this.ancho,this.alto, this.angulo, Color.RED);;
 	
 		}
+		public double getAngulo() {
+			return angulo;
+		}
 
+		public double getAlto() {
+			return alto;
+		}
+
+		public double getAncho() {
+			return ancho;
+		}
 
 		public double getX() {
 			return x;
