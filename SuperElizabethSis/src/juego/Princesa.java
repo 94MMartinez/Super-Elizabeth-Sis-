@@ -52,12 +52,13 @@ public class Princesa {
 	public void moverIzquierda() {
 		this.x= this.x -velocidad;
 		
-	}
-    
-	public void dibujar(Entorno e) {
-		e.dibujarRectangulo(this.x, this.y, this.ancho, this.alto, 0, Color.black);
-	}
 
+	}
+	public void dibujar(Entorno e) {
+		Color source = new Color(1f,0f,0f,.5f );
+		Color transparencia = new Color(source.getRed(), source.getGreen(), source.getBlue(),Color.TRANSLUCENT);
+		e.dibujarRectangulo(this.x, this.y, this.ancho, this.alto, 0, transparencia);
+	}
 	public int getX() {
 		return x;
 	}

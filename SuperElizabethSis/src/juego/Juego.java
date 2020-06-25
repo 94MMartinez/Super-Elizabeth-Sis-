@@ -45,7 +45,8 @@ public class Juego extends InterfaceJuego
 		vidas = 3;
 	    puntos= 0;
 		// Inicializa el objeto entorno
-		this.entorno = new Entorno(this, "Super Elizabeth Sis - Grupo 13", 800, 600);
+		
+	    this.entorno = new Entorno(this, "Super Elizabeth Sis - Grupo 13", 800, 600);
 		this.prin = new Princesa(150,500,60,30);
 		this.obs= new Obstaculos(825,500,20,30);
 		this.sold= new Soldados(800,500,53,20);
