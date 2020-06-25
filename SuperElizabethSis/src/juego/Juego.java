@@ -52,8 +52,8 @@ public class Juego extends InterfaceJuego
 		
 	    this.entorno = new Entorno(this, "Super Elizabeth Sis - Grupo 13", 800, 600);
 		this.prin = new Princesa(150,500,60,30);
-		this.obs= new Obstaculos(825,500,20,30);
-		this.sold= new Soldados(800,500,53,20);
+		this.obs= new Obstaculos(825,520,20,30);
+		this.sold= new Soldados(800,520,53,20);
 		this.bola= new Boladefuego(bola.getX(),bola.getY(),bola.getAncho(),bola.getAlto());
 		listaBol = new LinkedList <Boladefuego>();
 		listaSol=new LinkedList <Soldados>();
@@ -116,26 +116,31 @@ public class Juego extends InterfaceJuego
 				entorno.dibujarImagen(fuego, bola.getX(), bola.getY(), 0,1);
 				bola.moverDerecha();
 			}
+			 if (cont%275==0 ) {
+	           	 listaSol.add(new Soldados(sold.getX(),sold.getY(),53,28));
+	           	 
+	            }
+			for(Soldados sold:listaSol) {
+				
 			for(Boladefuego bola:listaBol) {
 				if (sold.getX()-sold.getAnchosoldado()/2 < bola.getX()+bola.getAncho()/2 && sold.getX()-sold.getAnchosoldado()/2 > bola.getX()-bola.getAncho()/2) {
 					listaBol.remove(bola);
+					listaSol.remove(sold);
 					puntos = puntos+5;
 					
 				}
 		    }
-
+			}
 				}
-	      	    if (cont%250==0 ) {
-	           	 listaSol.add(new Soldados(sold.getX(),sold.getY(),53,28));
-	           	 
-	            }
+	      	   
 	   		 for(Soldados sold:listaSol) {
 	   			 sold.dibujar(this.entorno);
 	   			 sold.moverIzquierda();
 	   		 }
-	   		 for(Soldados sold:listaSol) {
+	   		for(Soldados sold:listaSol) {
 	   			 if(sold.getY()-sold.getAltosoldado()/2< this.prin.getY()+ this.prin.getAlto()/2 && sold.getX()>this.prin.getX()-(this.prin.getAncho()) && sold.getX() < this.prin.getX()+(this.prin.getAncho())||sold.getX()==0) {
 	   				 listaSol.remove(sold);
+	   				 
 	   				 vidas = vidas -1;
 	   				}
 	   		 }
@@ -150,14 +155,14 @@ public class Juego extends InterfaceJuego
 	   				 obs.dibujar(this.entorno);
 	   				 obs.moverIzquierda();
 	   			 }
-         for(Obstaculos obs:listaObs) {
+                 for(Obstaculos obs:listaObs) {
 	   				 if(obs.getY()-obs.getAlto()/2< this.prin.getY()+ this.prin.getAlto()/2 && obs.getX()>this.prin.getX()-(this.prin.getAncho()) && obs.getX() < this.prin.getX()+(this.prin.getAncho())||obs.getX()==0) {
 	   					 listaObs.remove(obs);
 	   					 vidas = vidas -1;
 	   					 }
 	   			 }
-
-	      }}	 		   
+	
+	      		   
 
         if(juegofin()) {
 			entorno.dibujarImagen(fondo, 200, 200, 0);
@@ -165,7 +170,7 @@ public class Juego extends InterfaceJuego
 		}
     }
 	public boolean juegofin() {
-		if(this.vidas == 0) {
+		if(this.vidas <= 0) {
 			return true;
 		}else {
 			return false;

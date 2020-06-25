@@ -19,7 +19,7 @@ public class Obstaculos {
 			this.y=y;
 			this.alto=alto;
 			this.ancho=ancho;
-			this.velocidad=1;
+			this.velocidad=2;
 		
 			
 		}
