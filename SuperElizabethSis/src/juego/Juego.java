@@ -2,9 +2,10 @@ package juego;
 
 
 import java.util.LinkedList;
-
+import java.awt.Image;
 import entorno.Entorno;
 import entorno.InterfaceJuego;
+import entorno.Herramientas;
 
 public class Juego extends InterfaceJuego
 {
@@ -19,7 +20,8 @@ public class Juego extends InterfaceJuego
 	private int puntos;
     private boolean juegoFin = false;
 	private LinkedList <Boladefuego> listaBol;
-	
+	private Image fondo;
+
 
 	
 	
@@ -46,7 +48,8 @@ public class Juego extends InterfaceJuego
 		this.sold= new Soldados(800,500,53,20);
 		this.bola= new Boladefuego(bola.getX(),bola.getY(),bola.getAncho(),bola.getAlto());
 		listaBol = new LinkedList <Boladefuego>();
-
+		fondo = Herramientas.cargarImagen("Fondo.png");
+	
 
 		// Inicia el juego!
 		this.entorno.iniciar();
@@ -60,11 +63,11 @@ public class Juego extends InterfaceJuego
 	 */
 	public void tick()
 	{
-		// Procesamiento de un instante de tiempo
+		// Procesamiento de un instante de tiempoz
 		// ...
 
 		piso.dibujar(this.entorno);
-		
+		entorno.dibujarImagen(fondo, 200, 200, 0);
 		entorno.escribirTexto("VIDAS: "+ vidas, 700, 50);		
 		entorno.escribirTexto("Puntaje: "+ puntos, 600, 50);
 		prin.dibujar(this.entorno);
@@ -103,7 +106,7 @@ public class Juego extends InterfaceJuego
 		for(Boladefuego bola:listaBol) {
 			if (sold.getX()-sold.getAnchosoldado()/2 < bola.getX()+bola.getAncho()/2 && sold.getX()-sold.getAnchosoldado()/2 > bola.getX()-bola.getAncho()/2) {
 				listaBol.remove(bola);
-				puntos = puntos+1;
+				puntos = puntos+5;
 				
 			}
 	    }
@@ -118,7 +121,6 @@ public class Juego extends InterfaceJuego
 				vidas = vidas -1;
 				System.out.println(vidas);
 				if(vidas==0) {
-					this.entorno.iniciar();
 					entorno.escribirTexto("F", 325, 200);
 				}
 	      }			 		   
