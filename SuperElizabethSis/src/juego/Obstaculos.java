@@ -40,5 +40,10 @@ public class Obstaculos {
 		public int getY() {
 			return y;
 		}
-
+        public int getAlto() {
+        	return alto;
+        }
+        public int getAncho() {
+        	return ancho;
+        }
 }

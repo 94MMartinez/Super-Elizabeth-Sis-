@@ -20,11 +20,14 @@ public class Juego extends InterfaceJuego
 	private int vidas;
 	private int puntos;
 	private LinkedList <Boladefuego> listaBol;
+	private LinkedList <Obstaculos> listaObs;
+	private LinkedList <Soldados> listaSol;
 	private Image fondo;
 	private Image princesa;
 	private Image fuego;
 	private Image gameOver;
     private boolean juegofin;
+    private int cont;
 
 	
 	
@@ -44,6 +47,7 @@ public class Juego extends InterfaceJuego
 		
 		vidas = 3;
 	    puntos= 0;
+	    cont=0;
 		// Inicializa el objeto entorno
 		
 	    this.entorno = new Entorno(this, "Super Elizabeth Sis - Grupo 13", 800, 600);
@@ -52,7 +56,8 @@ public class Juego extends InterfaceJuego
 		this.sold= new Soldados(800,500,53,20);
 		this.bola= new Boladefuego(bola.getX(),bola.getY(),bola.getAncho(),bola.getAlto());
 		listaBol = new LinkedList <Boladefuego>();
-		
+		listaSol=new LinkedList <Soldados>();
+		listaObs= new LinkedList <Obstaculos>();
 		gameOver = Herramientas.cargarImagen("Gameover.png");
 		princesa = Herramientas.cargarImagen("prince.png");
 		fuego = Herramientas.cargarImagen("Fuego.png");
@@ -68,6 +73,7 @@ public class Juego extends InterfaceJuego
 	 * actualizar el estado interno del juego para simular el paso del tiempo 
 	 * (ver el enunciado del TP para mayor detalle).
 	 */
+
 	public void tick()
 	{
 		// Procesamiento de un instante de tiempoz
@@ -80,20 +86,8 @@ public class Juego extends InterfaceJuego
 		entorno.escribirTexto("VIDAS: "+ vidas, 700, 50);		
 		entorno.escribirTexto("Puntaje: "+ puntos, 600, 50);
 		prin.dibujar(this.entorno);
-		obs.dibujar(this.entorno);
-		obs.moverIzquierda();
-		sold.dibujar(this.entorno);
-		
-	      	      if(colision()) {
-				this.sold.toco();
-				vidas = vidas -1;
+		cont++;
 				
-	            
-	      }	else if (vidas> 0)
-	      {obs.dibujar(this.entorno);
-			obs.moverIzquierda();
-			sold.dibujar(this.entorno);
-			sold.moverIzquierda() ;
 			if (this.prin.getY()<498 && this.prin.getY()>350) {
 				this.prin.caer();
 			}
@@ -131,14 +125,45 @@ public class Juego extends InterfaceJuego
 		    }
 
 				}
- 
-	      }		 		   
-		if(juegofin()) {
+	      	    if (cont%250==0 ) {
+	           	 listaSol.add(new Soldados(sold.getX(),sold.getY(),53,28));
+	           	 
+	            }
+	   		 for(Soldados sold:listaSol) {
+	   			 sold.dibujar(this.entorno);
+	   			 sold.moverIzquierda();
+	   		 }
+	   		 for(Soldados sold:listaSol) {
+	   			 if(sold.getY()-sold.getAltosoldado()/2< this.prin.getY()+ this.prin.getAlto()/2 && sold.getX()>this.prin.getX()-(this.prin.getAncho()) && sold.getX() < this.prin.getX()+(this.prin.getAncho())||sold.getX()==0) {
+	   				 listaSol.remove(sold);
+	   				 vidas = vidas -1;
+	   				}
+	   		 }
+	   		 
+	   		 
+	   		 
+	   			 if (cont%250==0) {
+	   	        	 listaObs.add(new Obstaculos(obs.getX(),obs.getY(),20,30));
+	   	        	 
+	   	         }
+	   			 for(Obstaculos obs:listaObs) {
+	   				 obs.dibujar(this.entorno);
+	   				 obs.moverIzquierda();
+	   			 }
+         for(Obstaculos obs:listaObs) {
+	   				 if(obs.getY()-obs.getAlto()/2< this.prin.getY()+ this.prin.getAlto()/2 && obs.getX()>this.prin.getX()-(this.prin.getAncho()) && obs.getX() < this.prin.getX()+(this.prin.getAncho())||obs.getX()==0) {
+	   					 listaObs.remove(obs);
+	   					 vidas = vidas -1;
+	   					 }
+	   			 }
+
+	      }}	 		   
+
+        if(juegofin()) {
 			entorno.dibujarImagen(fondo, 200, 200, 0);
 			entorno.dibujarImagen(gameOver, 375, 300, 0);
+		}
     }
-	}
-	
 	public boolean juegofin() {
 		if(this.vidas == 0) {
 			return true;
@@ -146,9 +171,6 @@ public class Juego extends InterfaceJuego
 			return false;
 		}
 	}
-
-	   
-
     public boolean colision() {
 	boolean seTocanY = this.sold.getY()-this.sold.getAltosoldado()/2  < this.prin.getY() + this.prin.getAlto()/2 ;
 	boolean seTocanX = this.sold.getX()>this.prin.getX()-(this.prin.getAncho()) &&	this.sold.getX() < this.prin.getX()+(this.prin.getAncho());
