@@ -50,9 +50,10 @@ public class Soldados {
 		public int getAnchosoldado() {
 			return anchosoldado;
 		}
-
 		public void dibujar(Entorno e) {
-			e.dibujarRectangulo(this.x, this.y, this.anchosoldado, this.altosoldado,0, Color.GREEN);
+			Color source = new Color(1f,0f,0f,.5f );
+			Color transparencia = new Color(source.getRed(), source.getGreen(), source.getBlue(),Color.TRANSLUCENT);
+			e.dibujarRectangulo(this.x, this.y, this.anchosoldado, this.altosoldado, 0, transparencia);
 		}
 
 		public int getX() {

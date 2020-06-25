@@ -26,6 +26,8 @@ public class Juego extends InterfaceJuego
 	private Image princesa;
 	private Image fuego;
 	private Image gameOver;
+	private Image obstaculo;
+	private Image soldados;
     private boolean juegofin;
     private int cont;
 
@@ -61,7 +63,8 @@ public class Juego extends InterfaceJuego
 		gameOver = Herramientas.cargarImagen("Gameover.png");
 		princesa = Herramientas.cargarImagen("prince.png");
 		fuego = Herramientas.cargarImagen("Fuego.png");
-	
+		soldados = Herramientas.cargarImagen("soldado.png");
+		obstaculo= Herramientas.cargarImagen("obstaculo.png");
 
 		// Inicia el juego!
 		this.entorno.iniciar();
@@ -121,9 +124,9 @@ public class Juego extends InterfaceJuego
 	           	 
 	            }
 			for(Soldados sold:listaSol) {
-				
+				entorno.dibujarImagen(soldados, sold.getX(), sold.getY(), 0,1);
 			for(Boladefuego bola:listaBol) {
-				if (sold.getX()-sold.getAnchosoldado()/2 < bola.getX()+bola.getAncho()/2 && sold.getX()-sold.getAnchosoldado()/2 > bola.getX()-bola.getAncho()/2) {
+				if (sold.getY() - sold.getAltosoldado()/2 < bola.getY() + bola.getAlto()/2 && sold.getX()-sold.getAnchosoldado()/2 < bola.getX()+bola.getAncho()/2 && sold.getX()-sold.getAnchosoldado()/2 > bola.getX()-bola.getAncho()/2) {
 					listaBol.remove(bola);
 					listaSol.remove(sold);
 					puntos = puntos+5;
@@ -149,10 +152,11 @@ public class Juego extends InterfaceJuego
 	   		 
 	   			 if (cont%250==0) {
 	   	        	 listaObs.add(new Obstaculos(obs.getX(),obs.getY(),20,30));
-	   	        	 
+	   	        	
 	   	         }
 	   			 for(Obstaculos obs:listaObs) {
 	   				 obs.dibujar(this.entorno);
+	   				entorno.dibujarImagen(obstaculo, obs.getX(), obs.getY(), 0,1);
 	   				 obs.moverIzquierda();
 	   			 }
                  for(Obstaculos obs:listaObs) {
