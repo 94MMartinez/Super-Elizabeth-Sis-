@@ -72,56 +72,16 @@ public class Juego extends InterfaceJuego
 
 		piso.dibujar(this.entorno);
 		entorno.dibujarImagen(fondo, 200, 200, 0);
-		entorno.dibujarImagen(princesa, prin.getX(), prin.getY(), 0, 2);
-		
+		entorno.dibujarImagen(princesa, prin.getX(), prin.getY(), 0, 2);		
 		entorno.escribirTexto("VIDAS: "+ vidas, 700, 50);		
 		entorno.escribirTexto("Puntaje: "+ puntos, 600, 50);
 		prin.dibujar(this.entorno);
 		obs.dibujar(this.entorno);
 		obs.moverIzquierda();
 		sold.dibujar(this.entorno);
-		sold.moverIzquierda();
-		
-		if (this.prin.getY()<498 && this.prin.getY()>350) {
-			this.prin.caer();
-		}
-		boolean saltar=true;
-		
-		if (saltar && this.entorno.sePresiono(this.entorno.TECLA_ARRIBA) && this.prin.getY()>=440) { 
-			this.prin.subir();
-		      saltar=false;
-		      
-		   }
 
 		
-	  if(this.entorno.estaPresionada(this.entorno.TECLA_DERECHA) && prin.getX()<this.entorno.ancho()/2) {
-			prin.moverDerecha();
-		}
-		if(this.entorno.estaPresionada(this.entorno.TECLA_IZQUIERDA)&& prin.getX()>20) {
-			prin.moverIzquierda();
-
-		}	
-		if(this.entorno.sePresiono(this.entorno.TECLA_ESPACIO)) {
-			listaBol.add(new Boladefuego(prin.getX(),prin.getY(),bola.getAncho(),bola.getAlto()));
-		}
 		
-		for(Boladefuego bola:listaBol) {
-			bola.dibujar(entorno);
-			entorno.dibujarImagen(fuego, bola.getX(), bola.getY(), 0,1);
-			bola.moverDerecha();
-		}
-		for(Boladefuego bola:listaBol) {
-			if (sold.getX()-sold.getAnchosoldado()/2 < bola.getX()+bola.getAncho()/2 && sold.getX()-sold.getAnchosoldado()/2 > bola.getX()-bola.getAncho()/2) {
-				listaBol.remove(bola);
-				puntos = puntos+5;
-				
-			}
-	    }
-		obs.dibujar(this.entorno);
-		obs.moverIzquierda();
-		sold.dibujar(this.entorno);
-		sold.moverIzquierda() ;
-
 	      
 	      if(colision()) {
 				this.sold.toco();
@@ -130,7 +90,49 @@ public class Juego extends InterfaceJuego
 				if(vidas==0) {
 					entorno.escribirTexto("F", 325, 200);
 				}
-	      }			 		   
+	      }	else if (vidas> 0)
+	      {obs.dibujar(this.entorno);
+			obs.moverIzquierda();
+			sold.dibujar(this.entorno);
+			sold.moverIzquierda() ;
+			if (this.prin.getY()<498 && this.prin.getY()>350) {
+				this.prin.caer();
+			}
+			boolean saltar=true;
+			
+			if (saltar && this.entorno.sePresiono(this.entorno.TECLA_ARRIBA) && this.prin.getY()>=440) { 
+				this.prin.subir();
+			      saltar=false;
+			      
+			   }
+
+			
+		  if(this.entorno.estaPresionada(this.entorno.TECLA_DERECHA) && prin.getX()<this.entorno.ancho()/2) {
+				prin.moverDerecha();
+			}
+			if(this.entorno.estaPresionada(this.entorno.TECLA_IZQUIERDA)&& prin.getX()>20) {
+				prin.moverIzquierda();
+
+			}	
+			if(this.entorno.sePresiono(this.entorno.TECLA_ESPACIO)) {
+				listaBol.add(new Boladefuego(prin.getX(),prin.getY(),bola.getAncho(),bola.getAlto()));
+			}
+			
+			for(Boladefuego bola:listaBol) {
+				bola.dibujar(entorno);
+				entorno.dibujarImagen(fuego, bola.getX(), bola.getY(), 0,1);
+				bola.moverDerecha();
+			}
+			for(Boladefuego bola:listaBol) {
+				if (sold.getX()-sold.getAnchosoldado()/2 < bola.getX()+bola.getAncho()/2 && sold.getX()-sold.getAnchosoldado()/2 > bola.getX()-bola.getAncho()/2) {
+					listaBol.remove(bola);
+					puntos = puntos+5;
+					
+				}
+		    }
+
+ 
+	      }		 		   
 
     }
 
