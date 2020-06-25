@@ -21,6 +21,8 @@ public class Juego extends InterfaceJuego
     private boolean juegoFin = false;
 	private LinkedList <Boladefuego> listaBol;
 	private Image fondo;
+	private Image princesa;
+	private Image fuego;
 
 
 	
@@ -49,6 +51,8 @@ public class Juego extends InterfaceJuego
 		this.bola= new Boladefuego(bola.getX(),bola.getY(),bola.getAncho(),bola.getAlto());
 		listaBol = new LinkedList <Boladefuego>();
 		fondo = Herramientas.cargarImagen("Fondo.png");
+		princesa = Herramientas.cargarImagen("prince.png");
+		fuego = Herramientas.cargarImagen("Fuego.png");
 	
 
 		// Inicia el juego!
@@ -68,6 +72,8 @@ public class Juego extends InterfaceJuego
 
 		piso.dibujar(this.entorno);
 		entorno.dibujarImagen(fondo, 200, 200, 0);
+		entorno.dibujarImagen(princesa, prin.getX(), prin.getY(), 0, 2);
+		
 		entorno.escribirTexto("VIDAS: "+ vidas, 700, 50);		
 		entorno.escribirTexto("Puntaje: "+ puntos, 600, 50);
 		prin.dibujar(this.entorno);
@@ -81,8 +87,8 @@ public class Juego extends InterfaceJuego
 		}
 		boolean saltar=true;
 		
-		if (saltar && this.entorno.sePresiono(this.entorno.TECLA_ARRIBA) && this.prin.getY()>=440) {
-		      this.prin.subir();
+		if (saltar && this.entorno.sePresiono(this.entorno.TECLA_ARRIBA) && this.prin.getY()>=440) { 
+			this.prin.subir();
 		      saltar=false;
 		      
 		   }
@@ -101,6 +107,7 @@ public class Juego extends InterfaceJuego
 		
 		for(Boladefuego bola:listaBol) {
 			bola.dibujar(entorno);
+			entorno.dibujarImagen(fuego, bola.getX(), bola.getY(), 0,1);
 			bola.moverDerecha();
 		}
 		for(Boladefuego bola:listaBol) {

@@ -1,9 +1,10 @@
 package juego;
 
 import java.awt.Color;
+import java.awt.PageAttributes.ColorType;
 
 import entorno.Entorno;
-
+import java.awt.color.*;
 public class Princesa {
      //variables de instancia
 	private int x;
@@ -54,7 +55,7 @@ public class Princesa {
 	}
     
 	public void dibujar(Entorno e) {
-		e.dibujarRectangulo(this.x, this.y, this.ancho, this.alto, 0, Color.PINK);
+		e.dibujarRectangulo(this.x, this.y, this.ancho, this.alto, 0, Color.black);
 	}
 
 	public int getX() {
