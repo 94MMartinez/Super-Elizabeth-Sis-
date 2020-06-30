@@ -24,35 +24,23 @@ public class Princesa {
 		this.alto=alto;
 		this.ancho=ancho;
 		this.velocidad=3;
-     	this.salto=-1;
-     	this.saltoo=-90;
+     	this.salto=-90;
      	this.gravedad=-1;
-     	
+    }
 	
-	}
+	
 	public void caer() {
 		this.y=this.y - this.gravedad;
 	}
 	public void subir() {
-		this.y=this.y + this.saltoo;
-	}
-	
-     	
-		public void saltar() {
-		this.y= this.y + this.salto*(1);
-		
+		this.y=this.y + this.salto;
 	}
 	
 	public void moverDerecha() {
 		this.x= this.x +velocidad;
-		
-	
-		
 	}
 	public void moverIzquierda() {
 		this.x= this.x -velocidad;
-		
-
 	}
 	public void dibujar(Entorno e) {
 		Color source = new Color(1f,0f,0f,.5f );

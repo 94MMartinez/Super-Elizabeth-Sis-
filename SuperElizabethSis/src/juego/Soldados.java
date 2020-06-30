@@ -25,24 +25,10 @@ public class Soldados {
             this.prueba = 100;
 		}
 		
-		public boolean Vivo() {
-			return estaVivo;
-	
-		}
-		
-		
-		public void toco() {
-			this.x= this.x + this.prueba;
-	
-		}
-		
-		
+				
 		public void moverIzquierda() {
-			this.x= this.x - velocidad;
-			
-		}
-
-	    
+			this.x= this.x - velocidad;			
+		}	    
 		public int getAltosoldado() {
 			return altosoldado;
 		}

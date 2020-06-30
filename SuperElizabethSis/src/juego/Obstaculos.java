@@ -20,13 +20,11 @@ public class Obstaculos {
 			this.alto=alto;
 			this.ancho=ancho;
 			this.velocidad=2;
-		
-			
 		}
+		
 		
 		public void moverIzquierda() {
 			this.x= this.x - velocidad;
-			
 		}
 	    
 		public void dibujar(Entorno e) {

@@ -21,14 +21,11 @@ public class Boladefuego {
 			this.ancho=ancho;
 			this.velocidad=5;
 			this.angulo=0;
-		
-		
-			
 		}
+		
 		
 		public void moverDerecha() {
 			this.x= this.x + velocidad;
-			
 		}
 
 		public void dibujar(Entorno e) {
